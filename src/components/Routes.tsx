@@ -1,11 +1,15 @@
-import styled from "styled-components/macro";
+import React from "react";
+import Welcome from "@/pages/Welcome";
+import { Route, Routes as RouterRoutes } from "react-router-dom";
 
-interface Props {
-  className?: string;
-}
-
-const Routes = ({ className }: Props) => (
-  <div className={className}>Routes go here my dude</div>
+/**
+ * Directory of main level routes in the application
+ * @constructor
+ */
+const Routes: React.FC = () => (
+  <RouterRoutes>
+    <Route index element={<Welcome />} />
+  </RouterRoutes>
 );
 
-export default styled(Routes)``;
+export default Routes;
