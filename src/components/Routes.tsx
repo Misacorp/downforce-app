@@ -2,6 +2,7 @@ import { Routes as RouterRoutes, Route, useNavigate } from "react-router-dom";
 import CreateGameForm from "@/components/CreateGameForm";
 import { Bookmark, FilePen } from "@react95/icons";
 import PageModal from "@/components/PageModal";
+import Games from "@/components/Games/Games";
 
 /**
  * Routes
@@ -11,7 +12,6 @@ const Routes = () => {
   const navigate = useNavigate();
 
   const closeModal = () => {
-    console.log("nav");
     navigate("/");
   };
 
@@ -38,10 +38,12 @@ const Routes = () => {
             title="Games"
             onClose={closeModal}
           >
-            <CreateGameForm />
+            <Games />
           </PageModal>
         }
       />
+
+      <Route path="/" element={null} />
     </RouterRoutes>
   );
 };

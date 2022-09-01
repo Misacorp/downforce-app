@@ -1,7 +1,8 @@
 {
   "env": {
     "browser": true,
-    "es2021": true
+    "es2021": true,
+    "jest/globals": true
   },
   "extends": ["airbnb", "airbnb/hooks", "prettier"],
   "parser": "@typescript-eslint/parser",

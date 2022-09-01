@@ -1,9 +1,13 @@
 import React from "react";
-import "@react95/icons/icons.css";
+// import "@react95/icons/icons.css";
+import { Normalize } from "styled-normalize";
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "@react95/core";
-import "@/globalStyles.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Main from "@/pages/Main";
+import "@/globalStyles.css";
+
+const queryClient = new QueryClient();
 
 /**
  * Application root. All context providers should be listed here.
@@ -11,7 +15,10 @@ import Main from "@/pages/Main";
 const App = () => (
   <BrowserRouter>
     <ThemeProvider>
-      <Main />
+      <QueryClientProvider client={queryClient}>
+        <Normalize />
+        <Main />
+      </QueryClientProvider>
     </ThemeProvider>
   </BrowserRouter>
 );
