@@ -1,4 +1,14 @@
+@font-face {
+  font-family: "w95fa";
+  src: local("w95fa"), url(assets/fonts/w95fa.woff2) format("woff2");
+}
+
 html,
 body {
   margin: 0;
+  font-family: "w95fa";
+}
+
+a {
+  text-decoration: none;
 }

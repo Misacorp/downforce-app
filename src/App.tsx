@@ -1,9 +1,9 @@
 import React from "react";
 import "@react95/icons/icons.css";
 import { BrowserRouter } from "react-router-dom";
-import Routes from "@/components/Routes";
 import { ThemeProvider } from "@react95/core";
 import "@/globalStyles.css";
+import Main from "@/pages/Main";
 
 /**
  * Application root. All context providers should be listed here.
@@ -11,7 +11,7 @@ import "@/globalStyles.css";
 const App = () => (
   <BrowserRouter>
     <ThemeProvider>
-      <Routes />
+      <Main />
     </ThemeProvider>
   </BrowserRouter>
 );
