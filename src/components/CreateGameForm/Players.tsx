@@ -29,13 +29,13 @@ const Players = ({ seasonId, results, setResults, className }: Props) => {
   if (!seasonId) return null;
 
   /**
-   * Adds a new player to the form
-   * @param player
+   * Adds a new player result to the form
+   * @param resultPlayer
    */
-  const addPlayer = (player: FormGameResultPlayer) => {
-    const newPlayers = [...results, { ...player }];
+  const addPlayer = (resultPlayer: FormGameResultPlayer) => {
+    const newResults = [...results, { ...resultPlayer }];
 
-    setResults(newPlayers);
+    setResults(newResults);
   };
 
   /**
@@ -63,26 +63,24 @@ const Players = ({ seasonId, results, setResults, className }: Props) => {
 
       {isLoading && <Loader />}
 
-      {data?.length && (
+      <FlexBox>
         <FlexBox>
-          <FlexBox>
-            {results.map((player, index) => (
-              <Player
-                key={player.playerName}
-                player={{ ...player, placement: index + 1 }}
-                onDelete={deletePlayer}
-              />
-            ))}
-          </FlexBox>
-
-          <PlayerSelector
-            playerOptions={playerOptions}
-            selectedPlayerNames={results.map(({ playerName }) => playerName)}
-            onChange={addPlayer}
-            text={`Select ${formatIndexToUIStr(results.length + 1)} player`}
-          />
+          {results.map((player, index) => (
+            <Player
+              key={player.playerName}
+              player={{ ...player, placement: index + 1 }}
+              onDelete={deletePlayer}
+            />
+          ))}
         </FlexBox>
-      )}
+
+        <PlayerSelector
+          playerOptions={playerOptions}
+          selectedPlayerNames={results.map(({ playerName }) => playerName)}
+          onChange={addPlayer}
+          text={`Select ${formatIndexToUIStr(results.length + 1)} player`}
+        />
+      </FlexBox>
     </Fieldset>
   );
 };

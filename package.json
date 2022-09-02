@@ -1,6 +1,7 @@
 {
   "name": "my-app",
   "version": "0.1.0",
+  "homepage": "https://misacorp.github.io/downforce-app",
   "private": true,
   "dependencies": {
     "@react95/core": "^6.0.4",

@@ -41,9 +41,18 @@ const GameList = ({ seasonId, className }: Props) => {
       {isLoading && <Loader />}
 
       {Array.isArray(data) &&
-        data.map((game) => <Game game={game} key={game.pk1} />)}
+        data
+          .sort(
+            (a, b) =>
+              new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+          )
+          .map((game) => <Game game={game} key={game.pk1} />)}
     </div>
   );
 };
 
-export default styled(GameList)``;
+export default styled(GameList)`
+  ${Game} {
+    margin-bottom: 2rem;
+  }
+`;

@@ -100,15 +100,19 @@ const PlayerSelector = ({
   // The Dropdown element actually sucks and this whole UI library is a fun gimmick, but a pain to work with
   return (
     <FlexBox className={className}>
-      <select onChange={onPlayerSelect} value={text ?? defaultValue}>
-        {options.map((o) => (
-          <option key={o} value={o}>
-            {o}
-          </option>
-        ))}
-      </select>
+      {Boolean(playerOptions.length) && (
+        <>
+          <select onChange={onPlayerSelect} value={text ?? defaultValue}>
+            {options.map((o) => (
+              <option key={o} value={o}>
+                {o}
+              </option>
+            ))}
+          </select>
 
-      <span> or </span>
+          <span> or </span>
+        </>
+      )}
 
       <FlexBox>
         <FlexBox>
@@ -145,6 +149,7 @@ export default styled(PlayerSelector)`
   }
 
   ${FlexBox} {
+    flex-wrap: wrap;
     flex-direction: column;
     gap: 0.5rem;
     width: 100%;

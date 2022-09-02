@@ -53,3 +53,12 @@ export interface FormGameResultPlayer {
 export interface FormGameResult extends FormGameResultPlayer {
   placement: number;
 }
+
+export interface CreateGameDTO {
+  seasonId: string;
+  results: FormGameResult[];
+}
+
+export interface CreateGameResponse {
+  id: string;
+}

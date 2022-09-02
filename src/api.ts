@@ -1,4 +1,10 @@
-import { Game, Season, SeasonPlayer } from "@/types";
+import {
+  CreateGameDTO,
+  CreateGameResponse,
+  Game,
+  Season,
+  SeasonPlayer,
+} from "@/types";
 import config from "@/config";
 
 export enum API_CACHE_KEYS {
@@ -14,6 +20,20 @@ export enum API_CACHE_KEYS {
 const getRequest = async <T>(endpoint: string): Promise<T> => {
   const response = await fetch(`${config.API_ENDPOINT}${endpoint}`, {
     method: "GET",
+  });
+
+  return response.json();
+};
+
+/**
+ * Performs a POST request
+ * @param endpoint Endpoint
+ * @param payload  Object to be stringified into a response body
+ */
+const postRequest = async <T>(endpoint: string, payload: any): Promise<T> => {
+  const response = await fetch(`${config.API_ENDPOINT}${endpoint}`, {
+    method: "POST",
+    body: JSON.stringify(payload),
   });
 
   return response.json();
@@ -48,3 +68,12 @@ export const fetchPlayers = async (
 
   return getRequest<SeasonPlayer[]>(`/player?seasonId=${seasonId}`);
 };
+
+/**
+ * Create a game
+ * @param game Game DTO
+ */
+export const createGame = async (
+  game: CreateGameDTO
+): Promise<CreateGameResponse> =>
+  postRequest<CreateGameResponse>(`/game`, game);

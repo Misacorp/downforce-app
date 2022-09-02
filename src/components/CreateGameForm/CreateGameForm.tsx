@@ -1,10 +1,12 @@
+import React from "react";
 import styled from "styled-components/macro";
 import SeasonSelector from "@/components/SeasonSelector";
-import React from "react";
-import { FormGameResultPlayer, Season } from "@/types";
+import { CreateGameDTO, FormGameResultPlayer, Season } from "@/types";
 import Players from "@/components/CreateGameForm/Players";
 import FlexBox from "@/components/lib/FlexBox";
 import Button from "@/components/lib/Button";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { API_CACHE_KEYS, createGame } from "@/api";
 
 interface Props {
   className?: string;
@@ -22,22 +24,36 @@ const CreateGameForm = ({ className }: Props) => {
 
   const [results, setResults] = React.useState<FormGameResultPlayer[]>([]);
 
+  const queryClient = useQueryClient();
+  const mutation = useMutation(createGame, {
+    // TODO: Change to onSuccess when things work out
+    onSettled: () => {
+      queryClient.invalidateQueries([
+        `${API_CACHE_KEYS.GAME}_${API_CACHE_KEYS.SEASON}_${seasonId}`,
+      ]);
+    },
+  });
+
+  // Reset the player list when the season changes
+  React.useEffect(() => {
+    setResults([]);
+  }, [seasonId]);
+
   /**
    * Creates the game in the API
    */
-  const onSubmit = async () => {
-    const dto = {
-      season: seasonId,
-      results: [
-        results.map((result, index) => ({
-          ...result,
-          placement: index + 1,
-        })),
-      ],
+  const onSubmit = () => {
+    if (!season) return;
+
+    const dto: CreateGameDTO = {
+      seasonId: season.pk1, // Full season id including the prefix
+      results: results.map((result, index) => ({
+        ...result,
+        placement: index + 1,
+      })),
     };
 
-    // eslint-disable-next-line no-console
-    console.log(dto);
+    mutation.mutate(dto);
   };
 
   return (
@@ -46,7 +62,9 @@ const CreateGameForm = ({ className }: Props) => {
 
       <Players seasonId={seasonId} results={results} setResults={setResults} />
 
-      <Button onClick={onSubmit}>Create game</Button>
+      <Button onClick={onSubmit} disabled={mutation.isLoading}>
+        {mutation.isLoading ? "Creating…" : "Create game"}
+      </Button>
     </FlexBox>
   );
 };
