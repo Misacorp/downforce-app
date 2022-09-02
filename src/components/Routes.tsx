@@ -1,5 +1,5 @@
 import { Routes as RouterRoutes, Route, useNavigate } from "react-router-dom";
-import CreateGameForm from "@/components/CreateGameForm";
+import CreateGameForm from "@/components/CreateGameForm/CreateGameForm";
 import { Bookmark, FilePen } from "@react95/icons";
 import PageModal from "@/components/PageModal";
 import Games from "@/components/Games/Games";

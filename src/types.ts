@@ -35,3 +35,21 @@ export interface Game {
   type: string;
   results: GameResult[];
 }
+
+export interface SeasonPlayer {
+  createdAt: string;
+  elo: number;
+  gamesPlayed: number;
+  name: string;
+  pk1: string;
+  type: string;
+}
+
+export interface FormGameResultPlayer {
+  playerName: string;
+  playerId: null | string;
+}
+
+export interface FormGameResult extends FormGameResultPlayer {
+  placement: number;
+}

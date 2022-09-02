@@ -1,12 +1,12 @@
 import styled from "styled-components/macro";
 import { useQuery } from "@tanstack/react-query";
-import config from "@/config";
 import React, { FormEvent } from "react";
 import Loader from "@/components/lib/Loader";
 import Alert from "@/components/lib/Alert";
 import Dropdown from "@/components/lib/Dropdown";
 import Fieldset from "@/components/lib/Fieldset";
 import { Season } from "@/types";
+import { API_CACHE_KEYS, fetchSeasons } from "@/api";
 
 interface Props {
   onChange: (season: Season) => void;
@@ -20,23 +20,15 @@ interface Props {
  * @constructor
  */
 const SeasonSelector = ({ onChange, className }: Props) => {
-  /**
-   * Fetch seasons from the API
-   */
-  const fetchSeasons = async (): Promise<Season[]> => {
-    const response = await fetch(`${config.API_ENDPOINT}/season`, {
-      method: "GET",
-    });
-
-    return response.json();
-  };
-
   // Get seasons from the API
-  const { isLoading, error, data } = useQuery(["seasons"], fetchSeasons);
+  const { isLoading, error, data } = useQuery(
+    [API_CACHE_KEYS.SEASON],
+    fetchSeasons
+  );
 
   // Season names
-  const options = data?.map((season: { name: string }) => season.name) ?? [];
-  options.unshift("Select a season..."); // Add an option to indicate no selection has been made
+  const options = data?.map((season) => season.name) ?? [];
+  options.unshift("Select a season…"); // Add an option to indicate no selection has been made
 
   /**
    * Handles season selection change
@@ -73,14 +65,15 @@ const SeasonSelector = ({ onChange, className }: Props) => {
 
       {data && (
         <Fieldset legend="Season">
-          <Dropdown options={options} onChange={onSeasonSelect} />
+          <Dropdown
+            options={options}
+            onChange={onSeasonSelect}
+            title="Season"
+          />
         </Fieldset>
       )}
     </div>
   );
 };
 
-export default styled(SeasonSelector)`
-  ${Alert} {
-  }
-`;
+export default styled(SeasonSelector)``;

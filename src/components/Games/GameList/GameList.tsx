@@ -1,10 +1,9 @@
+import React from "react";
 import styled from "styled-components/macro";
 import { useQuery } from "@tanstack/react-query";
-import config from "@/config";
 import Alert from "@/components/lib/Alert";
-import React from "react";
+import { API_CACHE_KEYS, fetchGames } from "@/api";
 import Loader from "@/components/lib/Loader";
-import { Game as GameType } from "@/types";
 import Game from "./Game";
 
 interface Props {
@@ -19,27 +18,11 @@ interface Props {
  * @constructor
  */
 const GameList = ({ seasonId, className }: Props) => {
-  /**
-   * Fetches games from the API
-   */
-  const fetchGames = async (): Promise<GameType[]> => {
-    // No season id, no results
-    if (!seasonId) return [];
-
-    const response = await fetch(
-      `${config.API_ENDPOINT}/game?seasonId=${seasonId}`,
-      {
-        method: "GET",
-      }
-    );
-
-    return response.json();
-  };
-
   // Get games from the API
-  const { isLoading, error, data } = useQuery(
-    [`games_season_${seasonId}`],
-    fetchGames
+  const cacheKey = `${API_CACHE_KEYS.GAME}_${API_CACHE_KEYS.SEASON}_${seasonId}`;
+
+  const { isLoading, error, data } = useQuery([cacheKey], () =>
+    fetchGames(seasonId)
   );
 
   if (!seasonId) return null;
