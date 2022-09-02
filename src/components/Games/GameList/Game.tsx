@@ -2,6 +2,7 @@ import styled from "styled-components/macro";
 import { Game as GameType } from "@/types";
 import Fieldset from "@/components/lib/Fieldset";
 import EloChange from "@/components/Games/GameList/EloChange";
+import { formatISODateToUIDateStr, formatISODateToUITimeStr } from "@/utils";
 
 interface Props {
   game: GameType;
@@ -15,7 +16,12 @@ interface Props {
  * @constructor
  */
 const Game = ({ game, className }: Props) => (
-  <Fieldset legend={game.pk1} className={className}>
+  <Fieldset
+    legend={`${formatISODateToUIDateStr(
+      game.createdAt
+    )} ${formatISODateToUITimeStr(game.createdAt)}`}
+    className={className}
+  >
     <ol>
       {game.results
         .sort((a, b) => a.placement - b.placement)

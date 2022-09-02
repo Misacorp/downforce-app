@@ -27,7 +27,7 @@ const PageModal = ({ icon, title, onClose, className, children }: Props) => (
 
 export default styled(PageModal)`
   width: 94vw;
-  height: 94vh;
+  height: 92vh;
   left: 3vw;
   top: 2vh;
 `;

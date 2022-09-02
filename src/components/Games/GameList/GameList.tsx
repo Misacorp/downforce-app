@@ -38,7 +38,7 @@ const GameList = ({ seasonId, className }: Props) => {
 
   // Get games from the API
   const { isLoading, error, data } = useQuery(
-    [`games_season:${seasonId}`],
+    [`games_season_${seasonId}`],
     fetchGames
   );
 
