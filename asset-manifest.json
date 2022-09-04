@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/downforce-app/static/css/main.62bbc958.css",
-    "main.js": "/downforce-app/static/js/main.83b8dde9.js",
-    "static/media/w95fa.woff2": "/downforce-app/static/media/w95fa.fb426abf85e01e2c7d00.woff2",
-    "index.html": "/downforce-app/index.html",
-    "static/media/check.svg": "/downforce-app/static/media/check.cab94f089fae33556518400eea96707f.svg",
-    "static/media/check-disabled.svg": "/downforce-app/static/media/check-disabled.6c74515b9665a58c67515a6b7d03ecec.svg",
-    "static/media/rightcaret.svg": "/downforce-app/static/media/rightcaret.4316e9ffed3db2dabed84fe4f8329010.svg",
-    "main.62bbc958.css.map": "/downforce-app/static/css/main.62bbc958.css.map",
-    "main.83b8dde9.js.map": "/downforce-app/static/js/main.83b8dde9.js.map"
+    "main.css": "/static/css/main.92934d08.css",
+    "main.js": "/static/js/main.57bbbed8.js",
+    "static/media/w95fa.woff2": "/static/media/w95fa.fb426abf85e01e2c7d00.woff2",
+    "index.html": "/index.html",
+    "static/media/check.svg": "/static/media/check.cab94f089fae33556518400eea96707f.svg",
+    "static/media/check-disabled.svg": "/static/media/check-disabled.6c74515b9665a58c67515a6b7d03ecec.svg",
+    "static/media/rightcaret.svg": "/static/media/rightcaret.4316e9ffed3db2dabed84fe4f8329010.svg",
+    "main.92934d08.css.map": "/static/css/main.92934d08.css.map",
+    "main.57bbbed8.js.map": "/static/js/main.57bbbed8.js.map"
   },
   "entrypoints": [
-    "static/css/main.62bbc958.css",
-    "static/js/main.83b8dde9.js"
+    "static/css/main.92934d08.css",
+    "static/js/main.57bbbed8.js"
   ]
 }
