@@ -6,6 +6,7 @@ import { ThemeProvider } from "@react95/core";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Main from "@/pages/Main";
 import "@/globalStyles.css";
+import config from "@/config";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -20,7 +21,7 @@ const queryClient = new QueryClient({
  * Application root. All context providers should be listed here.
  */
 const App = () => (
-  <BrowserRouter>
+  <BrowserRouter basename={config.ROUTER_BASENAME}>
     <ThemeProvider>
       <QueryClientProvider client={queryClient}>
         <Normalize />
